@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions
   # GET /subscriptions.xml
   def index
-    @subscriptions = current_user.subscriptions.all
+    @subscriptions = Subscription.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.xml
   def show
-    @subscription = current_user.subscriptions.find(params[:id])
+    @subscription = Subscription.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,20 +35,20 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/1/edit
   def edit
-    @subscription = current_user.subscriptions.find(params[:id])
+    @subscription = Subscription.find(params[:id])
   end
 
   # POST /subscriptions
   # POST /subscriptions.xml
   def create
-    @subscription = current_user.subscriptions.build(params[:subscription])
+    
+    @subscription = Subscription.new(params[:subscription])
 
     respond_to do |format|
       if @subscription.save
-        activate_subscription!
+        activate_subscription
         format.html { redirect_to(@subscription, :notice => 'Subscription was successfully created.') }
         format.xml  { render :xml => @subscription, :status => :created, :location => @subscription }
-        format.json { render :json => @subscription }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @subscription.errors, :status => :unprocessable_entity }
@@ -59,7 +59,7 @@ class SubscriptionsController < ApplicationController
   # PUT /subscriptions/1
   # PUT /subscriptions/1.xml
   def update
-    @subscription = current_user.subscriptions.find(params[:id])
+    @subscription = Subscription.find(params[:id])
 
     respond_to do |format|
       if @subscription.update_attributes(params[:subscription])
@@ -75,7 +75,7 @@ class SubscriptionsController < ApplicationController
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.xml
   def destroy
-    @subscription = current_user.subscriptions.find(params[:id])
+    @subscription = Subscription.find(params[:id])
     @subscription.destroy
 
     respond_to do |format|
@@ -85,7 +85,7 @@ class SubscriptionsController < ApplicationController
   end
 
 private
-  def activate_subscription!
+  def activate_subscription
     require "superfeedr"
     Superfeedr.connect(ENV['SUPERFEEDR_USER'], ENV['SUPERFEEDR_PASS']) do
       Superfeedr.subscribe @subscription.topic do |result|

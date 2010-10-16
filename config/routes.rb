@@ -1,4 +1,8 @@
 Socialsofa::Application.routes.draw do
+  resources :subscriptions
+
+  get "hubbub/index"
+
   devise_for :users
 
   root :to => 'home#index'

@@ -1,0 +1,71 @@
+/*
+#22525D
+#F8EBE0
+#A99B8B
+#281915
+*/
+#header {
+	margin: 1em 0;
+}
+
+
+h1 {
+	font-family: 'Yanone Kaffeesatz', arial, serif;
+	font-size: 48px;
+	color: #22525D;
+
+}
+
+#header .tagLine {
+	font-family: 'Yanone Kaffeesatz', arial, serif;
+	font-size: 16px;
+	color: #A99B8B;
+}
+
+/*Feeds*/
+ul.feeds {
+	list-style: none;
+}
+
+ul.feeds .feed .title a {
+	color: #22525D;
+	text-decoration: none;
+}
+
+ul.feeds .feed .title .feedLink{
+	font-size: 14px;
+}
+
+.feeds .feed .title .feedLink a {
+	color: #A99B8B;
+}
+
+.feeds .feed .title .feedLink a:hover {
+	text-decoration: underline;
+}
+
+ul.pagination {
+	list-style: none;
+}
+
+ul.pagination li {
+	float: left;
+	border: 1px solid #A99B8B;
+	-moz-border-radius: 3px;
+	margin: 2px;
+}
+
+ul.pagination li.more {
+	margin: 0 5px;
+	border: 0;
+}
+
+ul.pagination li.on {
+	background-color: #F8EBE0;
+}
+
+ul.pagination li a, ul.pagination li.on a {
+	padding: 5px 10px;
+	text-decoration: none;
+	color: #22525D;
+}

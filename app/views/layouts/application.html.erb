@@ -10,6 +10,8 @@
 	<%= javascript_include_tag 'easy' %>
 	<%= javascript_include_tag 'main' %>
 	<%= javascript_include_tag 'jquery.sparkline.min' %>
+	<%= javascript_include_tag 'jgcharts.pack' %>
+	
 	<%= csrf_meta_tag %>
 </head>
 <body>
@@ -22,41 +24,18 @@
 			<p class="tagLine">Sit back and watch the Social Web</p>
 
 			<ul id="nav">
-				<li><a href="http://easyframework.com">Home</a></li>
-				<li><a href="http://easyframework.com/overview.php">Overview</a>
-					<ul>
-
-						<li><a href="#">Sub-navigation item</a></li>
-						<li><a href="#">Sub-navigation item</a></li>
-						<li><a href="#">Sub-navigation item</a></li>
-						<li><a href="#">Sub-navigation item</a></li>	
-					</ul>
-				</li>
-				<li><a href="http://easyframework.com/documentation.php">Documentation</a>
-
-					<ul>
-						<li><a href="#">Sub-navigation item</a></li>
-						<li><a href="#">Sub-navigation item</a></li>
-						<li><a href="#">Sub-navigation item</a></li>
-						<li><a href="#">Sub-navigation item</a></li>	
-					</ul>			
-				</li>
-				<li><a href="http://easyframework.com/demo.php">Demo</a></li>
-
-				<li><a href="http://easyframework.com/contact.php">Contact</a></li>
+				<li class="on"><a href="/">All Feeds</a></li>
+				<li><a href="/home/search">Search</a></li>
+				<li><a href="http://github.com">Documentation</a></li>
 			</ul>
 
 		</div>
 
 		<div class="content">
 
-			<div class="main">
-
+			
 <%= yield %>
 
-				
-
-			</div>
 		</div>
 
 		<div id="footer">

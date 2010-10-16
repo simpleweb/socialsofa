@@ -23,7 +23,7 @@
 	
 	<div class="secondary">
 	
-		<form method="post" action="/">	
+	  <%= form_tag(new_subscription_path) do %>
 
 						<fieldset>
 
@@ -39,7 +39,7 @@
 
 						<div class="submit"><button type="submit">Add</button></div>					
 
-					</form>
+      <% end %>
 					
 	</div>
 	

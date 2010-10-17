@@ -1,70 +1,43 @@
 <div class="main">
 
-		<h2>Search Results</h2>
-   
+  <% if @results %>
+  <h2>Search Results</h2>
 
-			
-	<% if @results %>
-	 <div id="searchResultsChart"></div>
-	<p class="searchSummary">
-		Showing <strong><%= @results.length %></strong> results for &quot;<%= @query %>&quot; <a href="#">clear search filter</a>
-		</p>
-	<ul class="feeds">
-	<% @results.each do |result| %>
-	  <li class="feed">
-			<h3 class="title"><a href="<%= result["object"]["permalinkUrl"] %>"><%= result["object"]["summary"] %></a></h3>
-			<blockquote class="summary"><%= raw result["object"]["content"] %></blockquote>
-		</li>
-	<% end %>
-	
-	<% end %>
-</ul>
+  <p class="searchSummary">
+    Showing <strong><%= @results.length %></strong> results for &quot;<%= @query %>&quot; <a href="/search">clear search</a>
+  </p>
+  <ul class="feeds">
+    <% @results.each do |result| %>
+    <li class="feed">
+      <h3 class="title"><a href="<%= result["object"]["permalinkUrl"] %>"><%= result["object"]["summary"] %></a></h3>
+      <blockquote class="summary"><%= raw result["object"]["content"] %></blockquote>
+    </li>
+    <% end %>
 
-	<ul class="pagination">
-
-			<!-- Previous page link --> 
-			<li><a class="next" href="/?page=2&filter=all">&lt; Previous</a></li>
-
-			<!-- Numbered page links -->
-
-						    	<li><a href="/?page=2&filter=all">1</a></li>
-						    	<li><a href="/?page=2&filter=all">2</a></li>
-						    	<li><a href="/?page=3&filter=all">3</a></li>
-						    	<li class="on"><a href="/?page=4&filter=all">4</a></li>
-						    	<li><a href="/?page=5&filter=all">5</a></li>
-						    	<li><a href="/?page=6&filter=all">6</a></li>
-						    	<li><a href="/?page=7&filter=all">7</a></li>
-						    	<li><a href="/?page=8&filter=all">8</a></li>
-						    	<li><a href="/?page=9&filter=all">9</a></li>
-						    	<li><a href="/?page=10&filter=all">10</a></li>
-								<li class="more">..</li>
-								<li><a href="/?page=226&filter=all">226</a></li>
-
-			<!-- Next page link --> 
-			<li><a class="next" href="/?page=2&filter=all">Next &gt;</a></li>
-		</ul>
+    <% end %>
+  </ul>
 
 </div>
 
 <div class="secondary">
 
-  <%= form_tag({:controller => :home, :action => :search}, :method => :get) do %>
+  <%= form_tag(search_path, :method => :get) do %>
 
-					<fieldset>
+  <fieldset>
 
-						<legend>Filter Results</legend>
-						
-						<p>Please provide a search query below to filter your results:</p>
-						
-						<div>
-							<label for="query">Query</label>
-							<input type="text" class="field label required" size="30" id="query" name="q">
-						</div>
-			
-					</fieldset>					
+    <legend>Search Results</legend>
 
-					<div class="submit"><button type="submit">Search</button></div>					
+    <p>Please provide a search query below (e.g. <a href="/search?utf8=✓&q=awesome">awesome</a>):</p>
 
-		<% end %>
-				
+    <div>
+      <label for="query">Query</label>
+      <input type="text" class="field required" size="30" id="query" name="q" value="<%= @query %>">
+    </div>
+
+  </fieldset>					
+
+  <div class="submit"><button type="submit">Search</button></div>					
+
+  <% end %>
+
 </div>

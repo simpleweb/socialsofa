@@ -41,12 +41,10 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   # POST /subscriptions.xml
   def create
-    
     @subscription = Subscription.new(params[:subscription])
 
     respond_to do |format|
       if @subscription.save
-        activate_subscription
         format.html { redirect_to(@subscription, :notice => 'Subscription was successfully created.') }
         format.xml  { render :xml => @subscription, :status => :created, :location => @subscription }
       else
@@ -82,16 +80,5 @@ class SubscriptionsController < ApplicationController
       format.html { redirect_to(subscriptions_url) }
       format.xml  { head :ok }
     end
-  end
-
-private
-  def activate_subscription
-    require "superfeedr"
-    Superfeedr.connect(ENV['SUPERFEEDR_USER'], ENV['SUPERFEEDR_PASS']) do
-      Superfeedr.subscribe @subscription.topic do |result|
-        puts "Subscribed to #{@subscription.topic}" if result
-      end
-    end
-    
   end
 end

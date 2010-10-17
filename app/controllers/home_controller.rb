@@ -3,10 +3,6 @@ require 'pp'
 
 class HomeController < ApplicationController
   def index
-    @feeds = SimpleCouch.all_feeds["rows"]
-  end
-
-  def search
     @query = params[:q]
     if @query
       matches = SimpleCouch.search_by_content(params[:q]).parsed_response
@@ -17,4 +13,7 @@ class HomeController < ApplicationController
     end
   end
 
+  def all
+    @feeds = SimpleCouch.all_feeds["rows"]
+  end
 end

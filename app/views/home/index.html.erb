@@ -1,53 +1,70 @@
-	<div class="main">
+<div class="main">
 
-			<h2>All Feeds</h2>
+		<h2>Search Results</h2>
+   
 
-      <% if @feeds %>
-		<ul class="feeds">
-      <% @feeds.each do |feed| %>
-<!--			<li class="feed">
-				<h3 class="title"><a href="/search/feed/URL">Hectic Jeffs Tweets</a> <span class="feedLink">(<a href="">http://search.twitter.com/blabhblah</a>)</span></h3>
-				<blockquote class="lastResult">@girlygeekdom and @nickhalstead  friend @tholder is in a geek dev competition this weekend and had igned up for Datasift.  Needs aPI access</blockquote>
+			
+	<% if @results %>
+	 <div id="searchResultsChart"></div>
+	<p class="searchSummary">
+		Showing <strong><%= @results.length %></strong> results for &quot;<%= @query %>&quot; <a href="#">clear search filter</a>
+		</p>
+	<ul class="feeds">
+	<% @results.each do |result| %>
+	  <li class="feed">
+			<h3 class="title"><a href="<%= result["object"]["permalinkUrl"] %>"><%= result["object"]["summary"] %></a></h3>
+			<blockquote class="summary"><%= raw result["object"]["content"] %></blockquote>
+		</li>
+	<% end %>
+	
+	<% end %>
+</ul>
 
-				<p class="summary">
-					<span class="inlinesparkline">20,1,5,16,36,8,9,7</span>
-					<span class="totalResults"><a href="">356,456 results since</a> Friday, 16th December 2010</span>
-				</p>
+	<ul class="pagination">
 
-			</li>-->
-			<li class="feed">
-			 <h3 class="title"><a href="<%= feed["key"] %>"><%= feed["key"] %></a></h3>
-			 <p class="summary">
-					<span class="totalResults"><%= feed["value"] %> results</span>
-				</p>
-			</li>
-      <% end %>
+			<!-- Previous page link --> 
+			<li><a class="next" href="/?page=2&filter=all">&lt; Previous</a></li>
+
+			<!-- Numbered page links -->
+
+						    	<li><a href="/?page=2&filter=all">1</a></li>
+						    	<li><a href="/?page=2&filter=all">2</a></li>
+						    	<li><a href="/?page=3&filter=all">3</a></li>
+						    	<li class="on"><a href="/?page=4&filter=all">4</a></li>
+						    	<li><a href="/?page=5&filter=all">5</a></li>
+						    	<li><a href="/?page=6&filter=all">6</a></li>
+						    	<li><a href="/?page=7&filter=all">7</a></li>
+						    	<li><a href="/?page=8&filter=all">8</a></li>
+						    	<li><a href="/?page=9&filter=all">9</a></li>
+						    	<li><a href="/?page=10&filter=all">10</a></li>
+								<li class="more">..</li>
+								<li><a href="/?page=226&filter=all">226</a></li>
+
+			<!-- Next page link --> 
+			<li><a class="next" href="/?page=2&filter=all">Next &gt;</a></li>
 		</ul>
-    <% else %>
-      <p>No feeds found</p>
-		<% end -%>
 
-	</div>
-	
-	<div class="secondary">
-	
-	  <%= form_tag(subscriptions_path) do %>
+</div>
 
-						<fieldset>
+<div class="secondary">
 
-							<legend>Add new feed to monitor</legend>
-							
-							<p>Social Sofa will put a request in to SuperFeedr to subscribe to the specified feed.</p>
-							
-							<div>
-								<label for="subscription_topic">URL of ATOM/RSS Feed</label>
-								<input type="text" class="field label required url" size="30" id="subscription_topic" name="subscription[topic]">
-							</div>
-						</fieldset>					
+  <%= form_tag({:controller => :home, :action => :search}, :method => :get) do %>
 
-						<div class="submit"><button type="submit">Add</button></div>					
+					<fieldset>
 
-      <% end %>
-					
-	</div>
-	
+						<legend>Filter Results</legend>
+						
+						<p>Please provide a search query below to filter your results:</p>
+						
+						<div>
+							<label for="query">Query</label>
+							<input type="text" class="field label required" size="30" id="query" name="q">
+						</div>
+			
+					</fieldset>					
+
+					<div class="submit"><button type="submit">Search</button></div>					
+
+		<% end %>
+				
+</div>

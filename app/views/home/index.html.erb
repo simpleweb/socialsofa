@@ -2,9 +2,10 @@
 
 			<h2>All Feeds</h2>
 
+      <% if @feeds %>
 		<ul class="feeds">
-
-			<li class="feed">
+      <% @feeds.each do |feed| %>
+<!--			<li class="feed">
 				<h3 class="title"><a href="/search/feed/URL">Hectic Jeffs Tweets</a> <span class="feedLink">(<a href="">http://search.twitter.com/blabhblah</a>)</span></h3>
 				<blockquote class="lastResult">@girlygeekdom and @nickhalstead  friend @tholder is in a geek dev competition this weekend and had igned up for Datasift.  Needs aPI access</blockquote>
 
@@ -13,11 +14,18 @@
 					<span class="totalResults"><a href="">356,456 results since</a> Friday, 16th December 2010</span>
 				</p>
 
+			</li>-->
+			<li class="feed">
+			 <h3 class="title"><a href="<%= feed["key"] %>"><%= feed["key"] %></a></h3>
+			 <p class="summary">
+					<span class="totalResults"><%= feed["value"] %> results</span>
+				</p>
 			</li>
-
+      <% end %>
 		</ul>
-
-		
+    <% else %>
+      <p>No feeds found</p>
+		<% end -%>
 
 	</div>
 	

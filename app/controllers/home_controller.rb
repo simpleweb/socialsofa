@@ -3,7 +3,9 @@ require 'pp'
 
 class HomeController < ApplicationController
   def index
+    @feeds = SimpleCouch.all_feeds["rows"]
   end
+
   def search
     @query = params[:q]
     if @query

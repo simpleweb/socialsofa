@@ -23,7 +23,7 @@
 	
 	<div class="secondary">
 	
-		<form method="post" action="/">	
+	  <%= form_tag(subscriptions_path) do %>
 
 						<fieldset>
 
@@ -32,14 +32,14 @@
 							<p>Social Sofa will put a request in to SuperFeedr to subscribe to the specified feed.</p>
 							
 							<div>
-								<label for="url">URL of ATOM/RSS Feed</label>
-								<input type="text" class="field label required url" size="30" id="url" name="url">
+								<label for="subscription_topic">URL of ATOM/RSS Feed</label>
+								<input type="text" class="field label required url" size="30" id="subscription_topic" name="subscription[topic]">
 							</div>
 						</fieldset>					
 
 						<div class="submit"><button type="submit">Add</button></div>					
 
-					</form>
+      <% end %>
 					
 	</div>
 	

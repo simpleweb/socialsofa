@@ -1,5 +1,3 @@
-require 'bundler/capistrano'
-
 set :application, "socialsofa"
 set :repository,  "git@github.com:railsrumble/rr10-team-262.git"
 

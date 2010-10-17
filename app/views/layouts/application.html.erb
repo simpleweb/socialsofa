@@ -2,13 +2,53 @@
 <html>
 <head>
   <title>Socialsofa</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+	<%= stylesheet_link_tag 'easy', :media => "screen" %>
+	<%= stylesheet_link_tag 'easyprint', :media => "print" %>
+	<%= stylesheet_link_tag 'screen' %>
+	<%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin' %>
+
+	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_tag 'jquery.sparkline.min' %>
+	<%= javascript_include_tag 'jgcharts.pack' %>
+
+	<%= csrf_meta_tag %>
 </head>
 <body>
 
-<%= yield %>
+	<div id="container">
+
+		<div id="header">
+
+			<h1>Social Sofa</h1>
+
+			<p class="tagLine">Sit back and watch the Social Web</p>
+		  <p class="notice"><%= notice %></p>
+		  <p class="alert"><%= alert %></p>
+			<ul id="nav">
+				<li class="on"><a href="/">All Feeds</a></li>
+				<li><a href="/home/search">Search</a></li>
+				<li><a href="http://github.com">Documentation</a></li>
+			</ul>
+
+		</div>
+
+		<div class="content">
+
+
+
+
+  <%= yield %>
+
+		</div>
+
+		<div id="footer">
+			<p>Social Sofa is an open source project. <a href="http://github.com/simpleweb">http://github.com/simpleweb</a></p>
+		</div>
+
+
+	</div>
+
+
 
 </body>
 </html>

@@ -1,0 +1,45 @@
+	<div class="main">
+
+			<h2>All Feeds</h2>
+
+		<ul class="feeds">
+
+			<li class="feed">
+				<h3 class="title"><a href="/search/feed/URL">Hectic Jeffs Tweets</a> <span class="feedLink">(<a href="">http://search.twitter.com/blabhblah</a>)</span></h3>
+				<blockquote class="lastResult">@girlygeekdom and @nickhalstead  friend @tholder is in a geek dev competition this weekend and had igned up for Datasift.  Needs aPI access</blockquote>
+
+				<p class="summary">
+					<span class="inlinesparkline">20,1,5,16,36,8,9,7</span>
+					<span class="totalResults"><a href="">356,456 results since</a> Friday, 16th December 2010</span>
+				</p>
+
+			</li>
+
+		</ul>
+
+		
+
+	</div>
+	
+	<div class="secondary">
+	
+	  <%= form_tag(subscriptions_path) do %>
+
+						<fieldset>
+
+							<legend>Add new feed to monitor</legend>
+							
+							<p>Social Sofa will put a request in to SuperFeedr to subscribe to the specified feed.</p>
+							
+							<div>
+								<label for="subscription_topic">URL of ATOM/RSS Feed</label>
+								<input type="text" class="field label required url" size="30" id="subscription_topic" name="subscription[topic]">
+							</div>
+						</fieldset>					
+
+						<div class="submit"><button type="submit">Add</button></div>					
+
+      <% end %>
+					
+	</div>
+	

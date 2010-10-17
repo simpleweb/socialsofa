@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  topic: http://search.twitter.com/search.atom?q=superfeedr
+
+two:
+  topic: http://search.twitter.com/search.atom?q=railsrumble

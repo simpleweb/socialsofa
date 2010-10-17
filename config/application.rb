@@ -7,6 +7,7 @@ require 'rails/all'
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Socialsofa
+  VERSION = '0.0.1'
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -31,7 +32,7 @@ module Socialsofa
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+     config.action_view.javascript_expansions[:defaults] = %w(jquery rails easy)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

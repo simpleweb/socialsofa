@@ -10,4 +10,8 @@ class SimpleCouch
   def self.search_by_feed(query)
     get("/_fti/_design/push/by_feed?q=#{CGI::escape(query)}")
   end
+
+  def self.all_feeds
+    get("/_design/push/_view/feeds?group=true")
+  end
 end

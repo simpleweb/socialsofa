@@ -1,52 +1,24 @@
 <div class="main">
 
 		<h2>Search Results</h2>
+   
 
-	
-
-			<div id="searchResultsChart"></div>
-
-				<p class="searchSummary">
-					Showing <strong>345</strong> results for &quot;Shopping&quot; <a href="#">clear search filter</a>
-					</p>
-					
+			
+	<% if @results %>
+	 <div id="searchResultsChart"></div>
+	<p class="searchSummary">
+		Showing <strong><%= @results.length %></strong> results for &quot;<%= @query %>&quot; <a href="#">clear search filter</a>
+		</p>
 	<ul class="feeds">
-
-		<li class="feed">
-			<h3 class="title"><a href="/search/feed/URL">Title of the search result</a></h3>
-			<blockquote class="summary">This is a summary of the result. And thus the 15th hour of the #railsrumble starts.  Time to polish up the backend code for easier view integration.</blockquote>
+	<% @results.each do |result| %>
+	  <li class="feed">
+			<h3 class="title"><a href="<%= result["object"]["permalinkUrl"] %>"><%= result["object"]["summary"] %></a></h3>
+			<blockquote class="summary"><%= raw result["object"]["content"] %></blockquote>
 		</li>
-		<li class="feed">
-			<h3 class="title"><a href="/search/feed/URL">Title of the search result</a></h3>
-			<blockquote class="summary">This is a summary of the result. And thus the 15th hour of the #railsrumble starts.  Time to polish up the backend code for easier view integration.</blockquote>
-		</li>
-		<li class="feed">
-			<h3 class="title"><a href="/search/feed/URL">Title of the search result</a></h3>
-			<blockquote class="summary">This is a summary of the result. And thus the 15th hour of the #railsrumble starts.  Time to polish up the backend code for easier view integration.</blockquote>
-		</li>
-		<li class="feed">
-			<h3 class="title"><a href="/search/feed/URL">Title of the search result</a></h3>
-			<blockquote class="summary">This is a summary of the result. And thus the 15th hour of the #railsrumble starts.  Time to polish up the backend code for easier view integration.</blockquote>
-		</li>
-		<li class="feed">
-			<h3 class="title"><a href="/search/feed/URL">Title of the search result</a></h3>
-			<blockquote class="summary">This is a summary of the result. And thus the 15th hour of the #railsrumble starts.  Time to polish up the backend code for easier view integration.</blockquote>
-		</li>
-		<li class="feed">
-			<h3 class="title"><a href="/search/feed/URL">Title of the search result</a></h3>
-			<blockquote class="summary">This is a summary of the result. And thus the 15th hour of the #railsrumble starts.  Time to polish up the backend code for easier view integration.</blockquote>
-		</li>
-		<li class="feed">
-			<h3 class="title"><a href="/search/feed/URL">Title of the search result</a></h3>
-			<blockquote class="summary">This is a summary of the result. And thus the 15th hour of the #railsrumble starts.  Time to polish up the backend code for easier view integration.</blockquote>
-		</li>
-		<li class="feed">
-			<h3 class="title"><a href="/search/feed/URL">Title of the search result</a></h3>
-			<blockquote class="summary">This is a summary of the result. And thus the 15th hour of the #railsrumble starts.  Time to polish up the backend code for easier view integration.</blockquote>
-		</li>
-
-	</ul>
-
+	<% end %>
+	
+	<% end %>
+</ul>
 
 	<ul class="pagination">
 

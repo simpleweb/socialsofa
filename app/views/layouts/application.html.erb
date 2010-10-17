@@ -25,9 +25,10 @@
 		  <p class="notice"><%= notice %></p>
 		  <p class="alert"><%= alert %></p>
 			<ul id="nav">
-				<li class="on"><a href="/">All Feeds</a></li>
-				<li><a href="/home/search">Search</a></li>
-				<li><a href="http://github.com">Documentation</a></li>
+				<li><%= link_to "Search", root_path %></li>
+				<li><%= link_to "Feeds", all_path %></li>
+				<li><%= link_to "Subscriptions", subscriptions_path %></li>
+				<li><a href="http://github.com/simpleweb/socialcouch">Documentation</a></li>
 			</ul>
 
 		</div>

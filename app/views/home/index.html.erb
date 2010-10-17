@@ -1,53 +1,43 @@
-	<div class="main">
+<div class="main">
 
-			<h2>All Feeds</h2>
+  <% if @results %>
+  <h2>Search Results</h2>
 
-      <% if @feeds %>
-		<ul class="feeds">
-      <% @feeds.each do |feed| %>
-<!--			<li class="feed">
-				<h3 class="title"><a href="/search/feed/URL">Hectic Jeffs Tweets</a> <span class="feedLink">(<a href="">http://search.twitter.com/blabhblah</a>)</span></h3>
-				<blockquote class="lastResult">@girlygeekdom and @nickhalstead  friend @tholder is in a geek dev competition this weekend and had igned up for Datasift.  Needs aPI access</blockquote>
+  <p class="searchSummary">
+    Showing <strong><%= @results.length %></strong> results for &quot;<%= @query %>&quot; <a href="/search">clear search</a>
+  </p>
+  <ul class="feeds">
+    <% @results.each do |result| %>
+    <li class="feed">
+      <h3 class="title"><a href="<%= result["object"]["permalinkUrl"] %>"><%= result["object"]["summary"] %></a></h3>
+      <blockquote class="summary"><%= raw result["object"]["content"] %></blockquote>
+    </li>
+    <% end %>
 
-				<p class="summary">
-					<span class="inlinesparkline">20,1,5,16,36,8,9,7</span>
-					<span class="totalResults"><a href="">356,456 results since</a> Friday, 16th December 2010</span>
-				</p>
+    <% end %>
+  </ul>
 
-			</li>-->
-			<li class="feed">
-			 <h3 class="title"><a href="<%= feed["key"] %>"><%= feed["key"] %></a></h3>
-			 <p class="summary">
-					<span class="totalResults"><%= feed["value"] %> results</span>
-				</p>
-			</li>
-      <% end %>
-		</ul>
-    <% else %>
-      <p>No feeds found</p>
-		<% end -%>
+</div>
 
-	</div>
-	
-	<div class="secondary">
-	
-	  <%= form_tag(subscriptions_path) do %>
+<div class="secondary">
 
-						<fieldset>
+  <%= form_tag(search_path, :method => :get) do %>
 
-							<legend>Add new feed to monitor</legend>
-							
-							<p>Social Sofa will put a request in to SuperFeedr to subscribe to the specified feed.</p>
-							
-							<div>
-								<label for="subscription_topic">URL of ATOM/RSS Feed</label>
-								<input type="text" class="field label required url" size="30" id="subscription_topic" name="subscription[topic]">
-							</div>
-						</fieldset>					
+  <fieldset>
 
-						<div class="submit"><button type="submit">Add</button></div>					
+    <legend>Search Results</legend>
 
-      <% end %>
-					
-	</div>
-	
+    <p>Please provide a search query below (e.g. <a href="/search?utf8=✓&q=awesome">awesome</a>):</p>
+
+    <div>
+      <label for="query">Query</label>
+      <input type="text" class="field required" size="30" id="query" name="q" value="<%= @query %>">
+    </div>
+
+  </fieldset>					
+
+  <div class="submit"><button type="submit">Search</button></div>					
+
+  <% end %>
+
+</div>

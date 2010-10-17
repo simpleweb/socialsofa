@@ -1,10 +1,7 @@
 Socialsofa::Application.routes.draw do
-  resources :subscriptions
-
-  get "hubbub/index"
-
   root :to => 'home#index'
 
+  match 'all', :to => 'home#all'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

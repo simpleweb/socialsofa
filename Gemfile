@@ -8,9 +8,13 @@ gem 'rails', '3.0.1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'jquery-rails'
-gem 'devise'
 gem 'couchrest'
-gem 'couchrest_model', :git => 'git://github.com/couchrest/couchrest_model.git'
+
+group :test do
+  gem 'shoulda'
+end
+
+gem 'httparty'
 
 # Use unicorn as the web server
 # gem 'unicorn'

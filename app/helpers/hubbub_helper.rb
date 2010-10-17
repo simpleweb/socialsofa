@@ -1,0 +1,2 @@
+module HubbubHelper
+end
